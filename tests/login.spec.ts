@@ -2,8 +2,8 @@ import { test, expect } from "@playwright/test";
 import { StaticVariables } from "../utils/staticVariables";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("/");
-});
+  await page.goto("/")
+})
 
 test.describe("login", () => {
   test("username, no password", async ({ page }) => {
@@ -14,15 +14,15 @@ test.describe("login", () => {
 
     await expect(page.getByPlaceholder("Username")).toHaveClass(
       "input_error form_input error"
-    );
+    )
     await expect(page.getByPlaceholder("Password")).toHaveClass(
       "input_error form_input error"
-    );
+    )
     await expect(page.locator("form div.form_group svg")).toHaveCount(2)
     await expect(
       page.locator("div.error-message-container.error")
-    ).toContainText(noPasswordMessage);
-  });
+    ).toContainText(noPasswordMessage)
+  })
 
   test("password, no username", async ({ page }) => {
     let noUsernameMessage = 'Username is required'
@@ -32,65 +32,65 @@ test.describe("login", () => {
 
     await expect(page.getByPlaceholder("Username")).toHaveClass(
       "input_error form_input error"
-    );
+    )
     await expect(page.getByPlaceholder("Password")).toHaveClass(
       "input_error form_input error"
-    );
+    )
     await expect(page.locator("form div.form_group svg")).toHaveCount(2)
     await expect(
       page.locator("div.error-message-container.error")
-    ).toContainText(noUsernameMessage);
-  });
+    ).toContainText(noUsernameMessage)
+  })
 
   test("inexistent user", async ({ page }) => {
     let inexistentUserError = 
     'Epic sadface: Username and password do not match any user in this service'
 
     await page.getByPlaceholder("Username").fill("inexistent")
-    await page.getByPlaceholder("Password").fill("user");
+    await page.getByPlaceholder("Password").fill("user")
     await page.getByRole("button", { name: "Login" }).click()
 
     await expect(page.getByPlaceholder("Username")).toHaveClass(
       "input_error form_input error"
-    );
+    )
     await expect(page.getByPlaceholder("Password")).toHaveClass(
       "input_error form_input error"
-    );
+    )
     await expect(page.locator("form div.form_group svg")).toHaveCount(2)
     await expect(
       page.locator("div.error-message-container.error")
-    ).toContainText(inexistentUserError);
-  });
+    ).toContainText(inexistentUserError)
+  })
 
   test("locked out user", async ({ page }) => {
-    let lockedUser = StaticVariables.staticLockedUser;
-    let lockedPassword = StaticVariables.staticLockedPassword;
+    let lockedUser = StaticVariables.staticLockedUser
+    let lockedPassword = StaticVariables.staticLockedPassword
     let lockedErrorUserMessage = "Epic sadface: Sorry, this user has been locked out."
 
-    await page.getByPlaceholder("Username").fill(lockedUser);
-    await page.getByPlaceholder("Password").fill(lockedPassword);
-    await page.getByRole("button", { name: "Login" }).click();
+    await page.getByPlaceholder("Username").fill(lockedUser)
+    await page.getByPlaceholder("Password").fill(lockedPassword)
+    await page.getByRole("button", { name: "Login" }).click()
 
     await expect(page.getByPlaceholder("Username")).toHaveClass(
       "input_error form_input error"
-    );
+    )
     await expect(page.getByPlaceholder("Password")).toHaveClass(
       "input_error form_input error"
-    );
-    await expect(page.locator("form div.form_group svg")).toHaveCount(2);
+    )
+    await expect(page.locator("form div.form_group svg")).toHaveCount(2)
     await expect(
       page.locator("div.error-message-container.error")
-    ).toContainText(lockedErrorUserMessage);
-  });
+    ).toContainText(lockedErrorUserMessage)
+  })
 
   test("standard user", async ({ page }) => {
-    let standardUser = StaticVariables.staticStandardUser;
-    let standardPassword = StaticVariables.staticStandardPassword;
+    let standardUser = StaticVariables.staticStandardUser
+    let standardPassword = StaticVariables.staticStandardPassword
 
-    await page.getByPlaceholder("Username").fill(standardUser);
-    await page.getByPlaceholder("Password").fill(standardPassword);
-    await page.getByRole("button", { name: "Login" }).click();
+    await page.getByPlaceholder("Username").fill(standardUser)
+    await page.getByPlaceholder("Password").fill(standardPassword)
+    await page.getByRole("button", { name: "Login" }).click()
 
-    await expect(page.locator("div.app_logo")).toHaveText("Swag Labs");
-  });
-});
+    await expect(page.locator("div.app_logo")).toHaveText("Swag Labs")
+  })
+})
