@@ -12,6 +12,7 @@ export class LoginPage {
 
   //Successful Login
   readonly appLogo: Locator
+  readonly appTitle: string
 
   constructor(page: Page) {
     this.page = page
@@ -25,6 +26,7 @@ export class LoginPage {
 
     //Successful Login
     this.appLogo = page.locator("div.app_logo")
+    this.appTitle = "Swag Labs"
   }
 
   async login(username: string, password: string) {
