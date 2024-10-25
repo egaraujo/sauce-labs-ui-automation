@@ -14,7 +14,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("login", () => {
-  test("username, no password", async ({ page }) => {
+  test("username, no password", async () => {
     let noPasswordMessage = "Password is required"
 
     loginPage.loginUsernameOnly("username")
@@ -22,7 +22,7 @@ test.describe("login", () => {
     loginAssertionHelper.performAssertions(noPasswordMessage)
   })
 
-  test("password, no username", async ({ page }) => {
+  test("password, no username", async () => {
     let noUsernameMessage = "Username is required"
 
     loginPage.loginPasswordOnly("password");
@@ -30,7 +30,7 @@ test.describe("login", () => {
     loginAssertionHelper.performAssertions(noUsernameMessage)
   })
 
-  test("inexistent user", async ({ page }) => {
+  test("inexistent user", async () => {
     let inexistentUserError =
       "Epic sadface: Username and password do not match any user in this service"
 
@@ -39,7 +39,7 @@ test.describe("login", () => {
     loginAssertionHelper.performAssertions(inexistentUserError)
   })
 
-  test("locked out user", async ({ page }) => {
+  test("locked out user", async () => {
     let lockedUser = StaticVariables.staticLockedUser
     let lockedPassword = StaticVariables.staticLockedPassword
 
@@ -51,7 +51,7 @@ test.describe("login", () => {
     loginAssertionHelper.performAssertions(lockedErrorUserMessage)
   });
 
-  test("standard user", async ({ page }) => {
+  test("standard user", async () => {
     let standardUser = StaticVariables.staticStandardUser
     let standardPassword = StaticVariables.staticStandardPassword
 
