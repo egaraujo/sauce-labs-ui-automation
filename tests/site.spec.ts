@@ -1,15 +1,15 @@
 import { test, expect } from "@playwright/test";
 import { PriceHelper } from '../helpers/priceHelper';
 import { StaticVariables } from '../utils/staticVariables';
+import { LoginPage } from "../page-objects/loginPage";
 
 let username = StaticVariables.staticStandardUser
 let password = StaticVariables.staticStandardPassword
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/')
-    await page.getByPlaceholder('Username').fill(username)
-    await page.getByPlaceholder('Password').fill(password)
-    await page.getByRole('button', { name: 'Login' }).click()
+    let loginPage: LoginPage = new LoginPage(page)
+    loginPage.login(username, password)
 })
 
 test('should display all available products', async({page}) => {
