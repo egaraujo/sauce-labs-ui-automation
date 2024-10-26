@@ -21,11 +21,11 @@ export class LoginPage {
     this.usernameInput = this.page.getByPlaceholder("Username")
     this.passwordInput = this.page.getByPlaceholder("Password")
     this.errorClasses = "input_error form_input error"
-    this.errorImage = page.locator("form div.form_group svg")
+    this.errorImage = this.page.locator("form div.form_group svg")
     this.errorDiv = this.page.locator("div.error-message-container.error")
 
     //Successful Login
-    this.appLogo = page.locator("div.app_logo")
+    this.appLogo = this.page.locator("div.app_logo")
     this.appTitle = "Swag Labs"
   }
 
