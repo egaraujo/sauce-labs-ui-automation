@@ -2,6 +2,8 @@ import { test, expect } from "@playwright/test";
 import { PriceHelper } from '../helpers/priceHelper';
 import { StaticVariables } from '../utils/staticVariables';
 import { LoginPage } from "../page-objects/loginPage";
+import { ProductAssertionHelper } from '../helpers/productAssertionHelper';
+import { ProductPage } from '../page-objects/productPage';
 
 let username = StaticVariables.staticStandardUser
 let password = StaticVariables.staticStandardPassword
@@ -49,10 +51,9 @@ test('should reset the app state', async({page}) => {
     expect(productUrl).toContain('inventory-item')
 
     // verify cart state
-    let cartCount = await page.locator('a.shopping_cart_link').textContent()
-    let cartBadge = page.locator('span.shopping_cart_badge')
-    expect(cartCount).toContain("1")
-    await expect(cartBadge).toBeVisible()
+    let productPage = new ProductPage(page)
+    let productAssertionHelper = new ProductAssertionHelper(productPage)
+    productAssertionHelper.verifyCartState("1", true)
 
     // reset app state
     await page.locator('div.bm-burger-button').click()
@@ -60,10 +61,7 @@ test('should reset the app state', async({page}) => {
     await page.locator('div.bm-cross-button').click()
 
     // verify cart state
-    cartCount = await page.locator('a.shopping_cart_link').textContent()
-    cartBadge = page.locator('span.shopping_cart_badge')
-    expect(cartCount).toContain('')
-    await expect(cartBadge).not.toBeVisible()
+    productAssertionHelper.verifyCartState("", false)
 })
 
 test('should verify footer content', async({page}) => {
@@ -127,10 +125,9 @@ test('should check out selected products', async({page}) => {
     await page.getByRole('button', {name: 'Add to cart'}).last().click()
 
     // verify cart state
-    let cartCount = await page.locator('a.shopping_cart_link').textContent()
-    let cartBadge = page.locator('span.shopping_cart_badge')
-    expect(cartCount).toContain("2")
-    await expect(cartBadge).toBeVisible()
+    let productPage = new ProductPage(page)
+    let productAssertionHelper = new ProductAssertionHelper(productPage)
+    productAssertionHelper.verifyCartState("2", true)
 
     // navigate to cart
     await page.locator('a.shopping_cart_link').click()
@@ -145,10 +142,7 @@ test('should check out selected products', async({page}) => {
     expect(redShirt).toBeVisible()
 
     // verify cart state
-    cartCount = await page.locator('a.shopping_cart_link').textContent()
-    cartBadge = page.locator('span.shopping_cart_badge')
-    expect(cartCount).toContain("1")
-    await expect(cartBadge).toBeVisible()
+    productAssertionHelper.verifyCartState("1", true)
 
     // add another product
     await page.getByRole('button', {name: 'Continue Shopping'}).click()
@@ -156,10 +150,7 @@ test('should check out selected products', async({page}) => {
     await page.getByRole('button', {name: 'Add to cart'}).click()
 
     // verify cart state
-    cartCount = await page.locator('a.shopping_cart_link').textContent()
-    cartBadge = page.locator('span.shopping_cart_badge')
-    expect(cartCount).toContain("2")
-    await expect(cartBadge).toBeVisible()
+    productAssertionHelper.verifyCartState("2", true)
 
     // navigate to cart
     await page.locator('a.shopping_cart_link').click()
