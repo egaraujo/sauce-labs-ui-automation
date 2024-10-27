@@ -143,7 +143,7 @@ test('should check out selected products', async({page}) => {
     // verify cart state
     productAssertionHelper.verifyCartState("1", true)
 
-    // add another product
+    // continue shopping
     await page.getByRole('button', {name: 'Continue Shopping'}).click()
     await page.getByText('Sauce Labs Fleece Jacket').click()
     await page.getByRole('button', {name: 'Add to cart'}).click()
