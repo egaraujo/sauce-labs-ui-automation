@@ -8,10 +8,19 @@ import { ProductPage } from '../page-objects/productPage';
 let username = StaticVariables.staticStandardUser
 let password = StaticVariables.staticStandardPassword
 
+let productPage: ProductPage
+let productAssertionHelper: ProductAssertionHelper
+
+import socialMediaData from "../test-data/socialMediaData.json"
+import siteData from "../test-data/siteData.json"
+
 test.beforeEach(async ({ page }) => {
     await page.goto('/')
     let loginPage: LoginPage = new LoginPage(page)
     loginPage.login(username, password)
+
+    productPage = new ProductPage(page)
+    productAssertionHelper = new ProductAssertionHelper(productPage)
 })
 
 test('should display all available products', async({page}) => {
@@ -51,8 +60,6 @@ test('should reset the app state', async({page}) => {
     expect(productUrl).toContain('inventory-item')
 
     // verify cart state
-    let productPage = new ProductPage(page)
-    let productAssertionHelper = new ProductAssertionHelper(productPage)
     productAssertionHelper.verifyCartState("1", true)
 
     // reset app state
@@ -62,25 +69,19 @@ test('should reset the app state', async({page}) => {
 
     // verify cart state
     productAssertionHelper.verifyCartState("", false)
+}) 
+
+socialMediaData.forEach(socialMedia =>{
+    test(`should verify footer link for: ${socialMedia.name}`, async () => {            
+            let link = productPage.findSocialMediaLocator(socialMedia.name)
+            await expect(link).toHaveText(socialMedia.name)
+            await expect(link).toHaveAttribute('href', socialMedia.url)
+        })
 })
 
-test('should verify footer content', async({page}) => {
-    let link = page.locator('li.social_twitter a')
-    await expect(link).toHaveText('Twitter')
-    await expect(link).toHaveAttribute('href', 'https://twitter.com/saucelabs')
-
-    link = page.locator('li.social_facebook a')
-    await expect(link).toHaveText('Facebook')
-    await expect(link).toHaveAttribute('href', 'https://www.facebook.com/saucelabs')
-
-    link = page.locator('li.social_linkedin a')
-    await expect(link).toHaveText('LinkedIn')
-    await expect(link).toHaveAttribute('href', 'https://www.linkedin.com/company/sauce-labs/')
-    
-    let footerText = page.locator('div.footer_copy')
-    await expect(footerText).toHaveText(
-         '© 2024 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy'
-    )
+test('should verify footer text', async() => {
+    let footer = productPage.footer
+    await expect(footer).toHaveText(siteData.footerText)
 })
 
 test('should sort products by ascending name', async({page}) => {
@@ -125,8 +126,6 @@ test('should check out selected products', async({page}) => {
     await page.getByRole('button', {name: 'Add to cart'}).last().click()
 
     // verify cart state
-    let productPage = new ProductPage(page)
-    let productAssertionHelper = new ProductAssertionHelper(productPage)
     productAssertionHelper.verifyCartState("2", true)
 
     // navigate to cart
