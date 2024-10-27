@@ -20,4 +20,10 @@ export class ProductAssertionHelper {
       await expect(cartBadge).not.toBeVisible()
     }
   }
+
+  async verifyFormErrors(errorMessage: string) {
+    let errorText = await this.productPage.formLocator.textContent()
+    expect(errorText).toContain(errorMessage)
+  }
+
 }

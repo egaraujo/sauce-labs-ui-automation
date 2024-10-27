@@ -9,6 +9,7 @@ export class ProductPage {
   readonly footer: Locator
   readonly productSelect: Locator
   readonly optionLocator: Locator
+  readonly formLocator: Locator
 
   // ProductAssertionHelper
   readonly cartCount: Locator
@@ -19,6 +20,7 @@ export class ProductPage {
     this.footer = page.locator('div.footer_copy')
     this.productSelect = page.locator('div.inventory_item_name')
     this.optionLocator = page.locator('select.product_sort_container')
+    this.formLocator = page.locator('form')
 
     // ProductAssertionHelper
     this.cartCount = page.locator('a.shopping_cart_link')
@@ -40,4 +42,5 @@ export class ProductPage {
     }
     return names
   }
+
 }

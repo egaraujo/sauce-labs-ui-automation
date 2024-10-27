@@ -13,6 +13,7 @@ let productAssertionHelper: ProductAssertionHelper
 
 import socialMediaData from "../test-data/socialMediaData.json"
 import siteData from "../test-data/siteData.json"
+import formErrors from "../test-data/formErrors.json"
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/')
@@ -167,24 +168,21 @@ test('should check out selected products', async({page}) => {
     await page.locator('div.checkout_buttons input').filter({hasText: 'Continue'}).click()
 
     // verify form errors
-    let errorText = await page.locator('form').textContent()
-    expect(errorText).toContain('Error: First Name is required')
+    productAssertionHelper.verifyFormErrors(formErrors.FirstName)
 
     // enter first name
     await page.getByPlaceholder('First Name').fill('John')
     await page.locator('div.checkout_buttons input').filter({hasText: 'Continue'}).click()
 
     // verify form errors
-    errorText = await page.locator('form').textContent()
-    expect(errorText).toContain('Error: Last Name is required')
+    productAssertionHelper.verifyFormErrors(formErrors.LastName)
 
     // enter last name
     await page.getByPlaceholder('Last Name').fill('Taylor')
     await page.locator('div.checkout_buttons input').filter({hasText: 'Continue'}).click()
 
     // verify form errors
-    errorText = await page.locator('form').textContent()
-    expect(errorText).toContain('Error: Postal Code is required')
+    productAssertionHelper.verifyFormErrors(formErrors.PostalCode)
 
     // enter postal code and continue
     await page.getByPlaceholder('Postal Code').fill('SW19 7HX')
