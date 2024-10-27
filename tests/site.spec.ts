@@ -84,18 +84,18 @@ test('should verify footer text', async() => {
     await expect(footer).toHaveText(siteData.footerText)
 })
 
-test('should sort products by ascending name', async({page}) => {
+test('should sort products by ascending name', async() => {
     // Name (A to Z)
-    let productList = await page.locator('div.inventory_item_name').allTextContents()
+    let productList = await productPage.productSelect.allTextContents()
     let ascendingProductList = productList.sort()
     expect(productList).toEqual(ascendingProductList)
 })
 
-test('should sort products by descending name', async({page}) => {
+test('should sort products by descending name', async() => {
     // Name (Z to A)
-    let productList = await page.locator('div.inventory_item_name').allTextContents()
-    let optionList = page.locator('select.product_sort_container')
-    await optionList.selectOption("Name (Z to A)")
+    let productList = await productPage.productSelect.allTextContents()
+    let optionList = productPage.optionLocator
+    await optionList.selectOption(siteData.descendingNamesSorting)
     const descendingProductList = productList.reverse()
     expect(productList).toEqual(descendingProductList)
 })

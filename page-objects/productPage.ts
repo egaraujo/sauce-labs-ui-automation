@@ -7,6 +7,8 @@ export class ProductPage {
 
   readonly socialMediaNames: Array<string>
   readonly footer: Locator
+  readonly productSelect: Locator
+  readonly optionLocator: Locator
 
   // ProductAssertionHelper
   readonly cartCount: Locator
@@ -15,6 +17,8 @@ export class ProductPage {
   constructor(page: Page) {
     this.page = page
     this.footer = page.locator('div.footer_copy')
+    this.productSelect = page.locator('div.inventory_item_name')
+    this.optionLocator = page.locator('select.product_sort_container')
 
     // ProductAssertionHelper
     this.cartCount = page.locator('a.shopping_cart_link')
