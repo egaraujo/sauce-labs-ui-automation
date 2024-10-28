@@ -10,7 +10,7 @@ export class LoginPage {
   readonly errorImage: Locator
   readonly errorDiv: Locator
 
-  //Successful Login
+  // Successful Login
   readonly appLogo: Locator
   readonly appTitle: string
 
@@ -24,7 +24,7 @@ export class LoginPage {
     this.errorImage = this.page.locator("form div.form_group svg")
     this.errorDiv = this.page.locator("div.error-message-container.error")
 
-    //Successful Login
+    // Successful Login
     this.appLogo = this.page.locator("div.app_logo")
     this.appTitle = "Swag Labs"
   }
