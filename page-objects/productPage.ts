@@ -5,9 +5,10 @@ import socialMediaData from "../test-data/socialMediaData.json"
 export class ProductPage {
   readonly page: Page
 
-  readonly socialMediaNames: Array<string>
+  readonly socialMediaNames: string[]
   readonly footer: Locator
   readonly productSelect: Locator
+  readonly priceSelect: Locator
   readonly optionLocator: Locator
   readonly formLocator: Locator
 
@@ -19,6 +20,7 @@ export class ProductPage {
     this.page = page
     this.footer = page.locator('div.footer_copy')
     this.productSelect = page.locator('div.inventory_item_name')
+    this.priceSelect = page.locator('div.inventory_item_price')
     this.optionLocator = page.locator('select.product_sort_container')
     this.formLocator = page.locator('form')
 

@@ -101,21 +101,21 @@ test('should sort products by descending name', async() => {
     expect(productList).toEqual(descendingProductList)
 })
 
-test('should sort products by ascending price', async({page}) => {
+test('should sort products by ascending price', async() => {
     // Price (low to high)
-    let optionList = page.locator('select.product_sort_container')
-    await optionList.selectOption("Price (low to high)")
-    let prices = await page.locator('div.inventory_item_price').allTextContents()
+    let optionList = productPage.optionLocator
+    await optionList.selectOption(siteData.ascendingPricesSorting)
+    let prices = await productPage.priceSelect.allTextContents()
     let priceList = PriceHelper.formatActualPriceList(prices)
     let ascendingPriceList = PriceHelper.sortPricesAscending(prices)
     expect(priceList).toEqual(ascendingPriceList)
 })
 
-test('should sort products by descending price', async({page}) => {
+test('should sort products by descending price', async() => {
     // Price (high to low)
-    let optionList = page.locator('select.product_sort_container')
-    await optionList.selectOption("Price (high to low)")
-    let prices = await page.locator('div.inventory_item_price').allTextContents()
+    let optionList = productPage.optionLocator
+    await optionList.selectOption(siteData.descendingPricesSorting)
+    let prices = await productPage.priceSelect.allTextContents()
     let priceList = PriceHelper.formatActualPriceList(prices)
     let descendingPriceList = PriceHelper.sortPricesDescending(prices)
     expect(priceList).toEqual(descendingPriceList)
