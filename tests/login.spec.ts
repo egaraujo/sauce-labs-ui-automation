@@ -16,22 +16,22 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("login", () => {
-  test("username, no password", async () => {
+  test("should not login username with no password", async () => {
     loginPage.loginUsernameOnly("username")
     loginAssertionHelper.performAssertions(errorMessages.PasswordRequired)
   })
 
-  test("password, no username", async () => {
+  test("should not login missing username with password", async () => {
     loginPage.loginPasswordOnly("password")
     loginAssertionHelper.performAssertions(errorMessages.UsernameRequired)
   })
 
-  test("inexistent user", async () => {
+  test("should not login inexistent user", async () => {
     loginPage.login("inexistent", "user")
     loginAssertionHelper.performAssertions(errorMessages.InexistentUser)
   })
 
-  test("locked out user", async () => {
+  test("should not login locked out user", async () => {
     let lockedUser = StaticVariables.staticLockedUser
     let lockedPassword = StaticVariables.staticLockedPassword
 
@@ -39,7 +39,7 @@ test.describe("login", () => {
     loginAssertionHelper.performAssertions(errorMessages.LockedOutUser)
   });
 
-  test("standard user", async () => {
+  test("should login standard user", async () => {
     let standardUser = StaticVariables.staticStandardUser
     let standardPassword = StaticVariables.staticStandardPassword
 

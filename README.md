@@ -12,7 +12,7 @@ This is a test suite in Playwright, for Sauce Demo web app running in a local Do
 ## Test cases
 ![screenshot](https://github.com/egaraujo/sauce-labs-ui-automation/blob/main/screenshot.jpg)
 • Should not login username with no password  
-• Should not login no username with password  
+• Should not login missing username with password  
 • Should not login inexistent user  
 • Should not login locked out user  
 • Should login standard user  
@@ -20,7 +20,10 @@ This is a test suite in Playwright, for Sauce Demo web app running in a local Do
 • Should link to the about website  
 • Should log user out  
 • Should reset the app state  
-• Should verify footer content  
+• Should verify footer link for: Twitter  
+• Should verify footer link for: Facebook  
+• Should verify footer link for: LinkedIn  
+• Should verify footer text  
 • Should sort products by ascending name  
 • Should sort products by descending name  
 • Should sort products by ascending price  
