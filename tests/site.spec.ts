@@ -41,9 +41,9 @@ test('should display all available products', async({page}) => {
 })
 
 test('should link to the about website', async({page}) => {
-    await page.locator('div.bm-burger-button').click()
-    let about = page.getByText('About')
-    await expect(about).toHaveAttribute('href', 'https://saucelabs.com/')
+    await productPage.burgerButton.click()
+    let aboutLink = page.getByText(siteData.aboutText)
+    await expect(aboutLink).toHaveAttribute('href', siteData.sauceLabsUrl)
 })
 
 test('should log user out', async({page}) => {

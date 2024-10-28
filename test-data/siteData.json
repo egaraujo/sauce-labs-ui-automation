@@ -6,5 +6,7 @@
     "cartPath": "/cart.html",
     "productsText": "Products",
     "allItemsText": "All Items",
-    "productCount": 6
+    "productCount": 6,
+    "sauceLabsUrl": "https://saucelabs.com/",
+    "aboutText": "About"
 }
