@@ -2,5 +2,9 @@
     "footerText": "© 2024 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
     "descendingNamesSorting": "Name (Z to A)",
     "ascendingPricesSorting": "Price (low to high)",
-    "descendingPricesSorting": "Price (high to low)"
+    "descendingPricesSorting": "Price (high to low)",
+    "cartPath": "/cart.html",
+    "productsText": "Products",
+    "allItemsText": "All Items",
+    "productCount": 6
 }

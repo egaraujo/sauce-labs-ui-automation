@@ -26,18 +26,18 @@ test.beforeEach(async ({ page }) => {
 
 test('should display all available products', async({page}) => {
     // navigate to cart
-    await page.locator('a.shopping_cart_link').click()
+    await productPage.cartCount.click()
     let cartUrl = page.url()
-    expect(cartUrl).toContain('/cart.html')
+    expect(cartUrl).toContain(siteData.cartPath)
 
     // display all items
-    await page.locator('div.bm-burger-button').click()
-    await page.getByText('All Items').click()
-    let productsTitle = await page.locator('span.title').textContent()
-    expect(productsTitle).toBe('Products')
+    await productPage.burgerButton.click()
+    await page.getByText(siteData.allItemsText).click()
+    let productsTitle = await productPage.productsTitle.textContent()
+    expect(productsTitle).toBe(siteData.productsText)
 
-    let products = page.locator('div.inventory_item')
-    expect(products).toHaveCount(6)
+    let products = productPage.inventoryItem
+    expect(products).toHaveCount(siteData.productCount)
 })
 
 test('should link to the about website', async({page}) => {
@@ -77,7 +77,7 @@ socialMediaData.forEach(socialMedia =>{
             let link = productPage.findSocialMediaLocator(socialMedia.name)
             await expect(link).toHaveText(socialMedia.name)
             await expect(link).toHaveAttribute('href', socialMedia.url)
-        })
+    })
 })
 
 test('should verify footer text', async() => {

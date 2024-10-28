@@ -11,6 +11,9 @@ export class ProductPage {
   readonly priceSelect: Locator
   readonly optionLocator: Locator
   readonly formLocator: Locator
+  readonly burgerButton: Locator
+  readonly productsTitle: Locator
+  readonly inventoryItem: Locator
 
   // ProductAssertionHelper
   readonly cartCount: Locator
@@ -23,6 +26,9 @@ export class ProductPage {
     this.priceSelect = page.locator('div.inventory_item_price')
     this.optionLocator = page.locator('select.product_sort_container')
     this.formLocator = page.locator('form')
+    this.burgerButton = page.locator('div.bm-burger-button')
+    this.productsTitle = page.locator('span.title')
+    this.inventoryItem = page.locator('div.inventory_item')
 
     // ProductAssertionHelper
     this.cartCount = page.locator('a.shopping_cart_link')
