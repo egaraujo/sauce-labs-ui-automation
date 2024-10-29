@@ -1,12 +1,17 @@
 {
-    "footerText": "© 2024 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
-    "descendingNamesSorting": "Name (Z to A)",
-    "ascendingPricesSorting": "Price (low to high)",
-    "descendingPricesSorting": "Price (high to low)",
-    "cartPath": "/cart.html",
-    "productsText": "Products",
+    "aboutText": "About",
     "allItemsText": "All Items",
-    "productCount": 6,
+    "footerText": "© 2024 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
+    "logoutText": "Logout",
+    "loginText": "Login",
+    "productsText": "Products",
+
+    "ascendingPricesSorting": "Price (low to high)",
+    "descendingNamesSorting": "Name (Z to A)",
+    "descendingPricesSorting": "Price (high to low)",  
+    
+    "cartPath": "/cart.html",
     "sauceLabsUrl": "https://saucelabs.com/",
-    "aboutText": "About"
+
+    "productCount": 6
 }

@@ -47,9 +47,9 @@ test('should link to the about website', async({page}) => {
 })
 
 test('should log user out', async({page}) => {
-    await page.locator('div.bm-burger-button').click()
-    await page.getByText('Logout').click()
-    let login = page.getByText('Login')
+    await productPage.burgerButton.click()
+    await page.getByText(siteData.logoutText).click()
+    let login = page.getByText(siteData.loginText)
     await expect(login).toBeVisible()
 })
 
