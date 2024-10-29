@@ -10,7 +10,7 @@ This is a test suite in Playwright, for Sauce Demo web app running in a local Do
    `npx playwright test --ui` for test runner
 
 ## Test cases
-![screenshot](https://github.com/egaraujo/sauce-labs-ui-automation/blob/main/screenshot.jpg)
+![screenshot](https://github.com/egaraujo/sauce-labs-ui-automation/blob/a473b5a514a2e5fed244559b67fb72ca6e7f7370/screenshot.jpg)
 • Should not login username with no password  
 • Should not login missing username with password  
 • Should not login inexistent user  
