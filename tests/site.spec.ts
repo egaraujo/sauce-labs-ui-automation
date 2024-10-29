@@ -24,15 +24,15 @@ test.beforeEach(async ({ page }) => {
     productAssertionHelper = new ProductAssertionHelper(productPage)
 })
 
-test('should display all available products', async({page}) => {
+test('should display all available products', async() => {
     // navigate to cart
     await productPage.cartCount.click()
-    let cartUrl = page.url()
+    let cartUrl = productPage.getUrl()
     expect(cartUrl).toContain(siteData.cartPath)
 
     // display all items
     await productPage.burgerButton.click()
-    await page.getByText(siteData.allItemsText).click()
+    await productPage.getByText(siteData.allItemsText).click()
     let productsTitle = await productPage.productsTitle.textContent()
     expect(productsTitle).toBe(siteData.productsText)
 
@@ -40,30 +40,30 @@ test('should display all available products', async({page}) => {
     expect(products).toHaveCount(siteData.productCount)
 })
 
-test('should link to the about website', async({page}) => {
+test('should link to the about website', async() => {
     await productPage.burgerButton.click()
-    let aboutLink = page.getByText(siteData.aboutText)
+    let aboutLink = productPage.getByText(siteData.aboutText)
     await expect(aboutLink).toHaveAttribute('href', siteData.sauceLabsUrl)
 })
 
-test('should log user out', async({page}) => {
+test('should log user out', async() => {
     await productPage.burgerButton.click()
-    await page.getByText(siteData.logoutText).click()
-    let login = page.getByText(siteData.loginText)
+    await productPage.getByText(siteData.logoutText).click()
+    let login = productPage.getByText(siteData.loginText)
     await expect(login).toBeVisible()
 })
 
-test('should reset the app state', async({page}) => {
+test('should reset the app state', async() => {
     // add product to cart
     await productPage.addFirstProductButton.click()
-    expect(page.url()).toContain(siteData.inventoryPath)
+    expect(productPage.getUrl()).toContain(siteData.inventoryPath)
 
     // verify cart state
     productAssertionHelper.verifyCartState("1", true)
 
     // reset app state
     await productPage.burgerButton.click()
-    await page.getByText(siteData.resetAppText).click()
+    await productPage.getByText(siteData.resetAppText).click()
     await productPage.crossButton.click()
 
     // verify cart state

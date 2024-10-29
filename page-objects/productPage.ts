@@ -55,4 +55,12 @@ export class ProductPage {
     return names
   }
 
+  getUrl(): string {
+    return this.page.url()
+  }
+
+  getByText(text: string): Locator {
+    return this.page.getByText(text)
+  }
+
 }
