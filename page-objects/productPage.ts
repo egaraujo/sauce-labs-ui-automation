@@ -14,6 +14,8 @@ export class ProductPage {
   readonly burgerButton: Locator
   readonly productsTitle: Locator
   readonly inventoryItem: Locator
+  readonly crossButton: Locator
+  readonly addFirstProductButton: Locator
 
   // ProductAssertionHelper
   readonly cartCount: Locator
@@ -29,6 +31,8 @@ export class ProductPage {
     this.burgerButton = page.locator('div.bm-burger-button')
     this.productsTitle = page.locator('span.title')
     this.inventoryItem = page.locator('div.inventory_item')
+    this.crossButton = page.locator('div.bm-cross-button')
+    this.addFirstProductButton = page.getByRole('button', {name: 'Add to cart'}).first()
 
     // ProductAssertionHelper
     this.cartCount = page.locator('a.shopping_cart_link')

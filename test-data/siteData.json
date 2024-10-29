@@ -5,12 +5,14 @@
     "logoutText": "Logout",
     "loginText": "Login",
     "productsText": "Products",
+    "resetAppText": "Reset App State",
 
     "ascendingPricesSorting": "Price (low to high)",
     "descendingNamesSorting": "Name (Z to A)",
     "descendingPricesSorting": "Price (high to low)",  
     
     "cartPath": "/cart.html",
+    "inventoryPath": "/inventory.html",
     "sauceLabsUrl": "https://saucelabs.com/",
 
     "productCount": 6

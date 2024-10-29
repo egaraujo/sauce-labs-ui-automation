@@ -55,18 +55,16 @@ test('should log user out', async({page}) => {
 
 test('should reset the app state', async({page}) => {
     // add product to cart
-    await page.getByRole('button', {name: 'Add to cart'}).first().click()
-    await page.getByText('Sauce Labs Backpack').click()
-    let productUrl = page.url()
-    expect(productUrl).toContain('inventory-item')
+    await productPage.addFirstProductButton.click()
+    expect(page.url()).toContain(siteData.inventoryPath)
 
     // verify cart state
     productAssertionHelper.verifyCartState("1", true)
 
     // reset app state
-    await page.locator('div.bm-burger-button').click()
-    await page.getByText('Reset App State').click()
-    await page.locator('div.bm-cross-button').click()
+    await productPage.burgerButton.click()
+    await page.getByText(siteData.resetAppText).click()
+    await productPage.crossButton.click()
 
     // verify cart state
     productAssertionHelper.verifyCartState("", false)
